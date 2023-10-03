@@ -30,7 +30,7 @@ class BankAccount():
             self._balance = balance
 
     def withdraw(self,amt):
-        if self._accType == "SA":
+        if self._accType == "Save":
             if self._balance-amt>=5000:
                 self._balance = self._balance-amt
             else:
@@ -78,7 +78,7 @@ class BankAccount():
                     if self._balance-amt<0:
                         odFee = (self._balance-amt)*0.01
                         print(f'odFee:{odFee}')
-                    self._balance = self._balance - amt + odFee
+                    self._balance = self._balance - amt - odFee
                     senderACC._balance = amt
             else:
                 print("The witdraw amount is off Limit")
