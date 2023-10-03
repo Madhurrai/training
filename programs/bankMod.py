@@ -45,7 +45,7 @@ class BankAccount():
                     if self._balance-amt<0:
                         odFee = (self._balance-amt)*0.01
                         print(f'odFee:{odFee}')
-                    self._balance = self._balance - amt + odFee
+                    self._balance = self._balance - amt - odFee
             else:
                 print("The witdraw amount is off Limit")
         else:
@@ -60,38 +60,7 @@ class BankAccount():
         self._balance = self._balance + amt
         if self._accType=="ODA":
             self._eStatement.append(self._balance)
-         
-    def transfer(self,senderACC,amt,pin):
-        if self._accType == "SA" and self._pin == pin:
-            if self._balance-amt>=5000:
-                 senderACC._balance += amt
-                 self._balance = self._balance-amt
-            else:
-                print(f'Low balance')
-        elif self._accType == "ODA"and self._pin == pin:
-            maximum_bal = max(self._eStatement)
-            limit = self._balance+maximum_bal*0.1
-            if  limit-amt>=0:
-                    print("Limit:",limit)
-                    print("state",self._eStatement)
-                    odFee = 0
-                    if self._balance-amt<0:
-                        odFee = (self._balance-amt)*0.01
-                        print(f'odFee:{odFee}')
-                    self._balance = self._balance - amt + odFee
-                    senderACC._balance = amt
-            else:
-                print("The witdraw amount is off Limit")
-        elif self._pin == pin:
-            if self._balance - amt>=0:
-                self._balance = self._balance - amt
-                senderACC._balance += amt
-
-            else:
-                print(f'Low Balance')
-        else:
-            print("Invalid Pin")
-
+   
 
     def creditInterest(self):
         if self._accType == "SA":
@@ -127,14 +96,14 @@ class atm(Bank,BankAccount):
 
 
     
-b = atm("BOB","TUM","BOBTUM")
-b.create("Save","Madhur",600000,1000,6)
+b = atm("SBI","BLR","SBI1000")
+b.create("SA","Madhur",600000,1000,6)
 b.info()
 b.deposit(10000)
 
 
-c = atm("BOB","TUM","BOBTUM")
-c.create("Curr","Vivek",800000,2000,6)
+c = atm("IOB","MLR","IOB2000")
+c.create("ODA","Vivek",800000,2000,6)
 c.info()
 c.deposit(40000)
 c.withdraw(560)
