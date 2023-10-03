@@ -29,12 +29,21 @@ class BankAccount():
         else:
             self._balance = balance
 
+
+
+
+
+
     def withdraw(self,amt):
+    # When acc is Savings
         if self._accType == "SA":
             if self._balance-amt>=5000:
                 self._balance = self._balance-amt
             else:
                 print(f'Not able to withdraw {amt}')
+
+    # When acc is overdraft
+        #elif self._acct=="ODA":
         elif self._accType == "ODA":
             maximum_bal = max(self._eStatement)
             limit = self._balance+maximum_bal*0.1
@@ -107,5 +116,4 @@ c.create("ODA","Vivek",800000,2000,6)
 c.info()
 c.deposit(40000)
 c.withdraw(560)
-b.transfer(c,5000,1018)
 c.info()
