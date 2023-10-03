@@ -127,13 +127,13 @@ class atm(Bank,BankAccount):
 
 
     
-b = atm("BOB","TUM","BOBTUM")
+b = atm("SBI","BLR","sb1001")
 b.create("Save","Madhur",600000,1000,6)
 b.info()
 b.deposit(10000)
 
 
-c = atm("BOB","TUM","BOBTUM")
+c = atm("IOB","MLR","IOB2001")
 c.create("Curr","Vivek",800000,2000,6)
 c.info()
 c.deposit(40000)
