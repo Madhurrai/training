@@ -45,7 +45,7 @@ class BankAccount():
                     if self._balance-amt<0:
                         odFee = (self._balance-amt)*0.01
                         print(f'odFee:{odFee}')
-                    self._balance = self._balance - amt - odFee
+                    self._balance = self._balance - amt + odFee
             else:
                 print("The witdraw amount is off Limit")
         else:
