@@ -1,45 +1,55 @@
-class prime_range:
-    def __init__(self, end,start=0):
-        if start==0:
-            self.current = start
-            self.end = end
-        elif start>end:
-            self.current=end
-            self.end=start
-    def __iter__(self):
-        return self
-    def is_prime(self,n):
-        if n<=1:
+from math import sqrt
+
+ 
+
+def check_prime(num):
+
+    if(num==1):
+
+        return False
+
+    for x in range(2,int(sqrt(num))+1):
+
+        if(num%x==0):
+
             return False
-        test=2
-        while test<n:
-            if n%test==0:
-                return False
-            test+=1
-        return True
+
+    return True
+
+ 
+
+class PrimeNumberIterator:
+
+    def __init__(self, start, end=None):
+
+        if end == None:
+
+            self.x = 1
+
+            self.y = start
+
+        else:
+            self.x = start
+            self.y = end
+
+    def __iter__(self):
+        self.n = self.x -1
+        return self
 
     def __next__(self):
-        while self.current< self.end:
-            num=self.current
-            self.current+=1
-            if self.is_prime(num):
-                return num
-        raise StopIteration
+        if self.n <= self.y:
+            self.n += 1
+            while not check_prime(self.n):
+                self.n += 1
+                if self.n > self.y:
+                        raise StopIteration
+            else:
 
-        
-print("Use case 1")
-for num in prime_range(10):
-        print(num)
-print("Use case 2")
-try:
-    primes= prime_range(10,20)
-    it=iter(primes)
-    print(next(it)) #11
-    print(next(it)) #13
-    print(next(it)) #17
-    print(next(it)) #19
-    print(next(it))
-except StopIteration:
-    print("")
+                return self.n
+        else:
+            raise StopIteration
+a = iter(PrimeNumberIterator(1000,10000))
+for x in a:
+    print(x)
 
  
