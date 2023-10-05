@@ -1,33 +1,17 @@
 from math import sqrt
-
- 
-
 def check_prime(num):
-
     if(num==1):
-
         return False
-
     for x in range(2,int(sqrt(num))+1):
-
         if(num%x==0):
-
             return False
-
     return True
 
- 
-
 class PrimeNumberIterator:
-
     def __init__(self, start, end=None):
-
         if end == None:
-
             self.x = 1
-
             self.y = start
-
         else:
             self.x = start
             self.y = end
@@ -48,7 +32,7 @@ class PrimeNumberIterator:
                 return self.n
         else:
             raise StopIteration
-a = iter(PrimeNumberIterator(1000,10000))
+a = iter(PrimeNumberIterator(10,20))
 for x in a:
     print(x)
 
